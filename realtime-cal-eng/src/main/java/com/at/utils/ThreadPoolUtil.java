@@ -18,10 +18,10 @@ public class ThreadPoolUtil {
                 if (pool == null) {
                     pool = new ThreadPoolExecutor(
                             4,
-                            20,
-                            100,
+                            14,
+                            10,
                             TimeUnit.SECONDS,
-                            new LinkedBlockingDeque<Runnable>(100)
+                            new LinkedBlockingDeque<Runnable>(500)
                     );
                 }
             }

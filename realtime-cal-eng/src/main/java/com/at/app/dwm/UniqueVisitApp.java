@@ -30,6 +30,12 @@ public class UniqueVisitApp {
      * 2 根据设备id 分流
      * 3 直接筛掉 last_page_id 不为空的字段，因为只要有上一页，说明这条不是这个用户进入的首个页面
      * 4 写回kafka
+     *
+     *
+     * 根据设备id分流，这样每条流中都为同一设备的流数据
+     * 根据last_page_id判断当前流是否为第一次访问(last_page_id 不为空 着说明当前页面是由上一个一面跳转过来的)
+     * 如果 last_page_id 为空则将该条数据的时间保存到状态变量中
+     *
      */
 
 
@@ -40,6 +46,7 @@ public class UniqueVisitApp {
         env.setParallelism(4);
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
         env.setStateBackend(new FsStateBackend("hdfs://hadoop102:8020/flink/checkpoint/uniquevisitApp"));
+
 
         SingleOutputStreamOperator<String> resDS = env.addSource(MyKafkaUtil.getKafkaSource("dwd_page_log", "unique_visit_app"))
                 .map(JSONObject::parseObject)

@@ -55,8 +55,11 @@ public class PaymentWideApp {
                 .keyBy(OrderWide::getOrder_id);
 
 
+//        paymentDS.print("paymentDS>>>>");
+//        orderWideDS.print("orderWideDS>>>>");
+
         SingleOutputStreamOperator<PaymentWide> res = paymentDS.intervalJoin(orderWideDS)
-                .between(Time.seconds(-5L), Time.seconds(5L))
+                .between(Time.seconds(-1800L), Time.seconds(0L))
                 .process(new ProcessJoinFunction<PaymentInfo, OrderWide, PaymentWide>() {
                     @Override
                     public void processElement(PaymentInfo paymentInfo, OrderWide orderWide, Context context, Collector<PaymentWide> collector) throws Exception {
@@ -64,7 +67,7 @@ public class PaymentWideApp {
                     }
                 });
 
-        res.print(">>>>>>>>>>>>>");
+//        res.print(">>>>>>>>>>>>>");
 
         res.map(JSON::toJSONString).addSink(MyKafkaUtil.getKafkaSink(paymentWideSinkTopic));
 

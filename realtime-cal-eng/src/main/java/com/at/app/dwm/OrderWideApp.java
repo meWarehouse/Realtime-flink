@@ -14,6 +14,7 @@ import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.RichMapFunction;
 
+import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.runtime.state.filesystem.FsStateBackend;
@@ -57,6 +58,8 @@ public class OrderWideApp {
         env.setParallelism(4);
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
         env.setStateBackend(new FsStateBackend("hdfs://hadoop102:8020/flink/checkpoint/orderwideApp"));
+
+        env.setRestartStrategy(RestartStrategies.noRestart());
 
         String orderInfoSourceTopic = "dwd_order_info";
         String orderDetailSourceTopic = "dwd_order_detail";
@@ -273,6 +276,8 @@ public class OrderWideApp {
                 60,
                 TimeUnit.SECONDS
         );
+
+        res.print(">>>>>");
 
         res.map(JSON::toJSONString).addSink(MyKafkaUtil.getKafkaSink(orderWideSinkTopic));
 

@@ -33,6 +33,7 @@ public class UserJumpDetailApp {
      * 跳出就是用户成功访问了网站的一个页面后就退出，不在继续访问网站的其它页面。而跳出率就是用跳出次数除以访问次数
      * 1 该页面是用户近期访问的第一个页面
      * 2 首次访问之后很长一段时间（自己设定），用户没继续再有其他页面的访问
+     * </p>
      */
 
     public static void main(String[] args) throws Exception {
@@ -42,18 +43,18 @@ public class UserJumpDetailApp {
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
         env.setStateBackend(new FsStateBackend("hdfs://hadoop102:8020/flink/checkpoint/userjumpdetailApp"));
 
-        DataStream<String> dataStream = env
-            .fromElements(
-                "{\"common\":{\"mid\":\"101\"},\"page\":{\"page_id\":\"home\"},\"ts\":10000} ",
-                "{\"common\":{\"mid\":\"102\"},\"page\":{\"page_id\":\"home\"},\"ts\":12000}",
-                "{\"common\":{\"mid\":\"102\"},\"page\":{\"page_id\":\"good_list\",\"last_page_id\":" +
-                    "\"home\"},\"ts\":150000} ",
-                "{\"common\":{\"mid\":\"102\"},\"page\":{\"page_id\":\"good_list\",\"last_page_id\":" +
-                    "\"detail\"},\"ts\":300000} "
-            );
+//        DataStream<String> dataStream = env
+//            .fromElements(
+//                "{\"common\":{\"mid\":\"101\"},\"page\":{\"page_id\":\"home\"},\"ts\":10000} ",
+//                "{\"common\":{\"mid\":\"102\"},\"page\":{\"page_id\":\"home\"},\"ts\":12000}",
+//                "{\"common\":{\"mid\":\"102\"},\"page\":{\"page_id\":\"good_list\",\"last_page_id\":" +
+//                    "\"home\"},\"ts\":150000} ",
+//                "{\"common\":{\"mid\":\"102\"},\"page\":{\"page_id\":\"good_list\",\"last_page_id\":" +
+//                    "\"detail\"},\"ts\":300000} "
+//            );
 
-        KeyedStream<JSONObject, String> keyedStream = /*env.addSource(MyKafkaUtil.getKafkaSource("dwd_page_log", "user_jump_detail_group"))*/
-        dataStream.map(JSONObject::parseObject)
+        KeyedStream<JSONObject, String> keyedStream = env.addSource(MyKafkaUtil.getKafkaSource("dwd_page_log", "user_jump_detail_group"))
+        .map(JSONObject::parseObject)
                 .assignTimestampsAndWatermarks(
                         WatermarkStrategy.<JSONObject>forMonotonousTimestamps().withTimestampAssigner(
                                 new SerializableTimestampAssigner<JSONObject>() {

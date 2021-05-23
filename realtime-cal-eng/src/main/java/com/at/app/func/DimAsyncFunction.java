@@ -9,6 +9,7 @@ import org.apache.flink.streaming.api.functions.async.ResultFuture;
 import org.apache.flink.streaming.api.functions.async.RichAsyncFunction;
 
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -45,7 +46,8 @@ public abstract class DimAsyncFunction<T> extends RichAsyncFunction<T,T> impleme
      */
     @Override
     public void asyncInvoke(T obj, ResultFuture<T> resultFuture) throws Exception {
-        executorService.submit(
+//        executorService.submit(
+        CompletableFuture.runAsync(
             new Runnable() {
                 @Override
                 public void run() {
