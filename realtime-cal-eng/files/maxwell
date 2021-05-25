@@ -1,0 +1,22 @@
+bin/maxwell-bootstrap --user maxwell --password maxwell --host hadoop102 --database rt_mall_flink --table user_info --client_id maxwell_1
+
+
+bin/maxwell-bootstrap --user maxwell --password maxwell --host hadoop102 --database rt_mall_flink --table base_province --client_id maxwell_1
+
+
+
+bin/maxwell-bootstrap --user maxwell --password maxwell --host hadoop102 --database rt_mall_flink --table sku_info --client_id maxwell_1
+
+
+bin/maxwell-bootstrap --user maxwell --password maxwell --host hadoop102 --database rt_mall_flink --table spu_info --client_id maxwell_1
+
+
+
+bin/maxwell-bootstrap --user maxwell --password maxwell --host hadoop102 --database rt_mall_flink --table base_category3 --client_id maxwell_1
+
+bin/maxwell-bootstrap --user maxwell --password maxwell --host hadoop102 --database rt_mall_flink --table base_category2 --client_id maxwell_1
+
+bin/maxwell-bootstrap --user maxwell --password maxwell --host hadoop102 --database rt_mall_flink --table base_category1 --client_id maxwell_1
+
+
+bin/maxwell-bootstrap --user maxwell --password maxwell --host hadoop102 --database rt_mall_flink --table base_trademark --client_id maxwell_1

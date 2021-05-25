@@ -229,7 +229,7 @@ public class VisitorStatsApp {
 //                new JdbcConnectionOptions.JdbcConnectionOptionsBuilder().build()
 //        ))
 
-//        res.print(">>>>");
+        res.print(">>>>");
         res.addSink(ClickHouseUtil.getJdbcSink("insert into visitor_stats values(?,?,?,?,?,?,?,?,?,?,?,?)"));
 
         env.execute();
