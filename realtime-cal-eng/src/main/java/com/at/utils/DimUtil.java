@@ -3,7 +3,6 @@ package com.at.utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.at.common.MallConfig;
-import org.apache.avro.reflect.AvroAlias;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.java.tuple.Tuple2;

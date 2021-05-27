@@ -13,8 +13,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 
 /**
- * Author: Felix
- * Date: 2021/2/19
  * Desc:  自定义维度异步查询的函数
  *  模板方法设计模式
  *      在父类中只定义方法的声明，让整个流程跑通
@@ -47,6 +45,7 @@ public abstract class DimAsyncFunction<T> extends RichAsyncFunction<T,T> impleme
     @Override
     public void asyncInvoke(T obj, ResultFuture<T> resultFuture) throws Exception {
 //        executorService.submit(
+//        CompletableFuture.runAsync(,executorService);
         CompletableFuture.runAsync(
             new Runnable() {
                 @Override
