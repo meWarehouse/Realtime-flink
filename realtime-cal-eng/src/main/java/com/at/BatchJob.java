@@ -31,7 +31,7 @@ import org.apache.flink.api.java.ExecutionEnvironment;
  * and run 'mvn clean package' on the command line.
  */
 public class BatchJob {
-
+//
 	public static void main(String[] args) throws Exception {
 		// set up the batch execution environment
 		final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();

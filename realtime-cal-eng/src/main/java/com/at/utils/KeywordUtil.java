@@ -1,12 +1,6 @@
 package com.at.utils;
 
-import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.Lexeme;
-import org.wltea.analyzer.lucene.IKAnalyzer;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,27 +13,27 @@ import java.util.List;
 public class KeywordUtil {
 
     public static List<String> analyze(String text) {
-
+//
         List<String> list = new ArrayList<>();
-
-        StringReader input = new StringReader(text);
-        IKSegmenter ikSegmenter = new IKSegmenter(input, true);
-
-        Lexeme next = null;
-
-        while (true) {
-            try {
-                if ((next = ikSegmenter.next()) != null) {
-                    list.add(next.getLexemeText());
-                } else {
-                    break;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("分词失败：" + e.getMessage());
-            }
-        }
-
+//
+//        StringReader input = new StringReader(text);
+//        IKSegmenter ikSegmenter = new IKSegmenter(input, true);
+//
+//        Lexeme next = null;
+//
+//        while (true) {
+//            try {
+//                if ((next = ikSegmenter.next()) != null) {
+//                    list.add(next.getLexemeText());
+//                } else {
+//                    break;
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                System.out.println("分词失败：" + e.getMessage());
+//            }
+//        }
+//
         return list;
 
     }

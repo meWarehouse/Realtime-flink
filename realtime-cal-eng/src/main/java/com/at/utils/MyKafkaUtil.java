@@ -54,7 +54,7 @@ public class MyKafkaUtil {
                 " 'properties.bootstrap.servers' = '"+ BOOTSTRAP_SERVERS +"', " +
                 " 'properties.group.id' = '"+groupId+ "', " +
                 "  'format' = 'json', " +
-                "  'scan.startup.mode' = 'latest-offset'  ";
+                "  'scan.startup.mode' = 'timestamp' , 'scan.startup.timestamp-millis'='1622732400000'";
         return  ddl;
     }
 

@@ -85,6 +85,26 @@ under the License.
 		-->
 
 		<dependency>
+			<groupId>com.alibaba.ververica</groupId>
+			<!-- add the dependency matching your database -->
+			<artifactId>flink-connector-mysql-cdc</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-connector-elasticsearch6_2.11</artifactId>
+			<version>1.13.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>6.8.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.janeluo</groupId>
 			<artifactId>ikanalyzer</artifactId>
 			<version>2012_u6</version>
@@ -105,6 +125,12 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
+			<version>${flink.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-table-planner-blink_2.11</artifactId>
 			<version>${flink.version}</version>
 		</dependency>
 
