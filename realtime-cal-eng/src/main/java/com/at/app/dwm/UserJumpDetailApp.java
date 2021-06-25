@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.cep.*;
+import org.apache.flink.cep.nfa.compiler.NFACompiler;
+import org.apache.flink.cep.pattern.conditions.IterativeCondition;
 import org.apache.flink.cep.pattern.conditions.SimpleCondition;
 import org.apache.flink.runtime.state.filesystem.FsStateBackend;
 import org.apache.flink.streaming.api.CheckpointingMode;
@@ -82,7 +84,15 @@ public class UserJumpDetailApp {
                         return StringUtils.isNotEmpty(pageId);
                     }
                 })
+                .where(new IterativeCondition<JSONObject>() {
+                    @Override
+                    public boolean filter(JSONObject jsonObject, Context<JSONObject> context) throws Exception {
+                        return false;
+                    }
+                })
                 .within(Time.milliseconds(10000L));
+
+        NFACompiler.NFAFactory<JSONObject> nfaFactory = NFACompiler.compileFactory(pattern, false);
 
 
         OutputTag<String> timeoutTag = new OutputTag<String>("timeout"){};
