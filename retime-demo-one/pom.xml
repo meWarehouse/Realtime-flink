@@ -200,7 +200,7 @@ under the License.
 							</filters>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.at.StreamingJob</mainClass>
+									<mainClass>com.at.retime.app.dwd.BaseLogApp</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>
