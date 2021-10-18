@@ -1,5 +1,6 @@
 package com.at.retime.common;
 
+
 import com.at.retime.bean.FlinkKafkaConsumerRecord;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.streaming.connectors.kafka.KafkaDeserializationSchema;

@@ -1,14 +1,12 @@
-package com.at.retime.util;
+package com.at.retime.utils;
 
 
-import com.at.retime.app.dwd.BaseLogApp;
 import com.at.retime.common.Constant;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.flink.api.java.utils.ParameterTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
