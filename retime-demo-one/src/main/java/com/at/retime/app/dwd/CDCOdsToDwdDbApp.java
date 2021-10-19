@@ -7,7 +7,7 @@ import com.alibaba.ververica.cdc.connectors.mysql.table.StartupOptions;
 import com.alibaba.ververica.cdc.debezium.DebeziumSourceFunction;
 
 
-import com.at.retime.aa.app.fun.CDCTableProcessFunction;
+import com.at.retime.app.func.CDCTableProcessFunction;
 import com.at.retime.bean.FlinkKafkaConsumerRecord;
 import com.at.retime.bean.TableProcess;
 
