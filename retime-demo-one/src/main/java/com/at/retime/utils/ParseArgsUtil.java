@@ -21,7 +21,7 @@ public class ParseArgsUtil {
 
     private static Logger logger =  LoggerFactory.getLogger(ParseArgsUtil.class);
     private static String path = Constant.DEFAULT_CONFIG_FILE;
-    public static final String envType = Constant.ENV_TYPE;
+    private static final String envType = Constant.ENV_TYPE;
 
     public static ParameterTool init(String[] args, boolean isSQLSubmit) {
 
@@ -40,18 +40,20 @@ public class ParseArgsUtil {
         if(inputMap.containsKey(Constant.CONFIG_FILE)){
             path = inputMap.get(Constant.CONFIG_FILE);
         }
-
-        path = new ParseArgsUtil().getClass().getClassLoader().getResource(path).getPath();
-
-        if(!new File(path).exists()){
-            throw new RuntimeException("You must specify a profile on resources catalogue or through parameter --conf input");
-        }
+//
+//        path = new ParseArgsUtil().getClass().getClassLoader().getResource(path).getPath();
+//
+//        if(!new File(path).exists()){
+//            throw new RuntimeException("You must specify a profile on resources catalogue or through parameter --conf input");
+//        }
 
         // load default properties
         // load default properties : sqlSubmit.properties
         ParameterTool defaultPropFile = null;
         try {
-            defaultPropFile = ParameterTool.fromPropertiesFile(path);
+//            defaultPropFile = ParameterTool.fromPropertiesFile(path);
+//            defaultPropFile = ParameterTool.fromPropertiesFile(PropertiesUtil.getResource(Constant.DEFAULT_CONFIG_FILE));
+            defaultPropFile = ParameterTool.fromPropertiesFile(Thread.currentThread().getContextClassLoader().getResource(Constant.DEFAULT_CONFIG_FILE).openStream());
         } catch (IOException e) {
             logger.info("Unable to resolve the configuration file in the " + path + " directory");
             e.printStackTrace();

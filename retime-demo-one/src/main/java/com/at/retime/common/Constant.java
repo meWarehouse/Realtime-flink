@@ -50,6 +50,11 @@ public class Constant {
     public final static String CHECKPOINT_INTERVAL = "checkpoint.interval";
     public final static String CHECKPOINT_TIMEOUT = "checkpoint.timeout";
 
+    public static final String DEFAULT_PARALLELISM = "default.parallelism";
+
+    public static final String DEFAULT_SLOT_GROUP = "slot.group.name";
+
+
 
     public static final String HBASE_SCHEMA="MALL_REALTIME";
     public static final String PHOENIX_SERVER="jdbc:phoenix:hadoop102,hadoop103,hadoop104:2181";
